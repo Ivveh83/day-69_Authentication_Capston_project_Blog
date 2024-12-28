@@ -45,7 +45,6 @@ app.config['SESSION_PERMANENT'] = False #Sessionen är tillfällig och kommer at
 login_manager.init_app(app)
 
 ph = PasswordHasher()
-# TODO: Configure Flask-Login
 
 
 # CREATE DATABASE
@@ -57,10 +56,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DB_URI", "sqlite:///blog
 db = SQLAlchemy(model_class=Base)
 db.init_app(app)
 
-
-
-
-# TODO: Create a User table for all your registered users.
 
 
 #PARENT to BlogPost and Comment
@@ -169,7 +164,6 @@ gravatar = Gravatar(app,
 
 
 
-# TODO: Use Werkzeug to hash the user's password when creating a new user.
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegisterForm()
@@ -194,7 +188,7 @@ def register():
         # return redirect(url_for('register'))
 
 
-# TODO: Retrieve a user from the database based on their email. 
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
@@ -228,7 +222,7 @@ def get_all_posts():
     return render_template("index.html", all_posts=posts)
 
 
-# TODO: Allow logged-in users to comment on posts
+
 @app.route("/post/<int:post_id>", methods=['GET', 'POST'])
 def show_post(post_id):
     form = CommentForm()
@@ -250,7 +244,7 @@ def show_post(post_id):
     return render_template("post.html", users=users, post=requested_post, form=form, comments_list=all_comments_on_post)
 
 
-# TODO: Use a decorator so only an admin user can create a new post
+
 @app.route("/new-post", methods=["GET", "POST"])
 @fresh_login_required
 def add_new_post():
@@ -270,7 +264,7 @@ def add_new_post():
     return render_template("make-post.html", form=form)
 
 
-# TODO: Use a decorator so only an admin user can edit a post
+
 @app.route("/edit-post/<int:post_id>", methods=["GET", "POST"])
 @admin_only
 def edit_post(post_id):
@@ -293,7 +287,7 @@ def edit_post(post_id):
     return render_template("make-post.html", form=edit_form, is_edit=True)
 
 
-# TODO: Use a decorator so only an admin user can delete a post
+
 @app.route("/delete/<int:post_id>")
 @admin_only
 def delete_post(post_id):
