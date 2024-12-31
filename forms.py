@@ -7,6 +7,7 @@ from wtforms.validators import DataRequired, Length, Email
 from email_validator import validate_email, EmailNotValidError
 
 
+
 # WTForm for creating a blog post
 class CreatePostForm(FlaskForm):
     title = StringField("Blog Post Title", validators=[DataRequired()])
