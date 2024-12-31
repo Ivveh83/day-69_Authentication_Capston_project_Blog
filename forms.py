@@ -1,8 +1,10 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.fields.simple import EmailField, PasswordField, HiddenField
+from wtforms.validators import DataRequired, URL
 from flask_ckeditor import CKEditorField
-from wtforms.validators import DataRequired, Length, Email, URL
+from wtforms.validators import DataRequired, Length, Email
+from email_validator import validate_email, EmailNotValidError
 
 
 # WTForm for creating a blog post
