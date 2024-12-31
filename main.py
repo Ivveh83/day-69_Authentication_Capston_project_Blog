@@ -18,6 +18,7 @@ from typing import List
 from bs4 import BeautifulSoup
 import os
 
+
 '''
 Make sure the required packages are installed: 
 Open the Terminal in PyCharm (bottom left). 
