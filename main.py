@@ -1,24 +1,21 @@
 from __future__ import annotations
 from datetime import date
-from flask import Flask, abort, render_template, redirect, url_for, flash, request, g
 from flask_bootstrap import Bootstrap5
 from flask_ckeditor import CKEditor
 from flask_gravatar import Gravatar
-from sqlalchemy import Integer, String, Text
 from forms import CreatePostForm, RegisterForm, CommentForm, LoginForm
-from flask import Flask, render_template, request, url_for, redirect, flash, send_from_directory, session
+from flask import Flask, render_template, request, url_for, redirect, flash
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 from sqlalchemy.exc import IntegrityError
-from sqlalchemy import Integer, String, ForeignKey
-from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user, fresh_login_required
+from sqlalchemy import Integer, String, ForeignKey, Text
+from flask_login import LoginManager, UserMixin, login_user, logout_user, current_user, fresh_login_required
 from argon2 import PasswordHasher
-from flask_wtf.csrf import CSRFProtect, validate_csrf, BadRequest
+from flask_wtf.csrf import CSRFProtect
 from functools import wraps
 from argon2.exceptions import VerifyMismatchError
 from typing import List
 from bs4 import BeautifulSoup
-import base64
 import os
 
 '''
