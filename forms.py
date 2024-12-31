@@ -5,6 +5,7 @@ from flask_ckeditor import CKEditorField
 from wtforms.validators import DataRequired, Length, Email, URL
 
 
+
 # WTForm for creating a blog post
 class CreatePostForm(FlaskForm):
     title = StringField("Blog Post Title", validators=[DataRequired()])
