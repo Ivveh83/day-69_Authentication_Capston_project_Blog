@@ -32,6 +32,14 @@ include "header.html" %}
                 {{ ckeditor.config(name='body') }}
                 {{ render_form(form, novalidate=True, button_map={"submit": "primary"}) }}
 
+                <!-- Lägg till CKEditor-kompatibilitetskontrollen innan CKEditor initieras -->
+                <script type="text/javascript">
+                    // Enable CKEditor in all environments except IE7 and below.
+                    if ( !CKEDITOR.env.ie || CKEDITOR.env.version > 7 ) {
+                        CKEDITOR.env.isCompatible = true;
+                    }
+                </script>
+
                 <script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
                 <script>
                     // Initialisera CKEditor med id eller namn som används i din form
@@ -41,8 +49,8 @@ include "header.html" %}
                     });
                 </script>
             </div>
-
         </div>
     </div>
 </main>
+
 {% include "footer.html" %} {% endblock %}
