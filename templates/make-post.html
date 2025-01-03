@@ -32,25 +32,21 @@ include "header.html" %}
                 {{ ckeditor.config(name='body') }}
                 {{ render_form(form, novalidate=True, button_map={"submit": "primary"}) }}
 
-                <!-- Lägg till CKEditor-kompatibilitetskontrollen innan CKEditor initieras -->
-                <script type="text/javascript">
-                    // Enable CKEditor in all environments except IE7 and below.
-                    if ( !CKEDITOR.env.ie || CKEDITOR.env.version > 7 ) {
-                        CKEDITOR.env.isCompatible = true;
-                    }
-                </script>
+                <!-- Lägg till CKEditor 5-script -->
+                <script src="https://cdn.ckeditor.com/ckeditor5/34.1.0/classic/ckeditor.js"></script>
 
-                <script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
+                <!-- Initialisera CKEditor 5 -->
                 <script>
-                    // Initialisera CKEditor med id eller namn som används i din form
-                    CKEDITOR.replace('body', {
-                        // Du kan lägga till anpassade inställningar här om det behövs
-                        height: 300,
-                    });
+                    ClassicEditor
+                        .create(document.querySelector('#body'))  // ID för din textarea (använd rätt ID)
+                        .catch(error => {
+                            console.error(error);
+                        });
                 </script>
             </div>
         </div>
     </div>
 </main>
+
 
 {% include "footer.html" %} {% endblock %}
