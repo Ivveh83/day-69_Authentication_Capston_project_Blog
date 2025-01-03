@@ -45,9 +45,19 @@
                 <div class="warning">You have submitted an invalid CSRF token</div>
 
                 {% endif %}
-                {{ render_form(form) }}
-                {{ ckeditor.load(pkg_type="full") }}
-                {{ ckeditor.config(name='body') }}
+                {{ render_form(form, novalidate=True, button_map={"submit": "primary"}) }}
+
+                <!-- Lägg till CKEditor 5-script -->
+                <script src="https://cdn.ckeditor.com/ckeditor5/34.1.0/classic/ckeditor.js"></script>
+
+                <!-- Initialisera CKEditor 5 -->
+                <script>
+                    ClassicEditor
+                        .create(document.querySelector('#body'))  // ID för din textarea (använd rätt ID)
+                        .catch(error => {
+                            console.error(error);
+                        });
+                </script>
                 {% endif %}
                 <div class="comment">
                     <!-- TODO: Show all the comments on a post -->
@@ -55,7 +65,7 @@
                         {% for comment in comments_list %}
                         <li>
                             <div class="commenterImage">
-<!--                                <img src="../static/assets/img/default-profile.jpg"/>-->
+                                <!--                                <img src="../static/assets/img/default-profile.jpg"/>-->
                                 {% for user in users %}
                                 {% if user.id == comment.author_of_comment_id %}
                                 <img src="{{ user.email | gravatar }}"/>
