@@ -10861,3 +10861,23 @@ header.masthead .post-heading .meta a {
   color: #ee6f57;
   text-align: center;
 }
+
+/* Responsiv styling för CKEditor */
+.cke_editor {
+    width: 100% !important; /* Se till att CKEditor är fullbredd */
+    max-width: 100% !important;
+}
+
+.cke_contents {
+    width: 100% !important; /* Innehållet ska fylla bredden */
+}
+
+.cke_top {
+    width: 100% !important; /* Se till att toppen inte överskrider */
+}
+
+/* Anpassa textarean (textarea med id 'body') */
+textarea#body {
+    width: 100% !important;
+    min-height: 200px; /* Justera höjd om nödvändigt */
+}
